@@ -1,0 +1,37 @@
+<div class="container">
+    <h4 class="text-center">Create a new Quote</h4>
+    <hr >
+    <form (ngSubmit)='submitGoal()'#quoteForm='ngForm'>
+        <div class="form-group">
+  
+            <label for="text">Quote</label> <br>
+            <textarea class="form-control" id="quote" rows="4"[(ngModel)]="newQuote.quote" name="quote" #quote='ngModel' required></textarea>
+            <div [hidden]="quote.valid || quote.pristine" class="alert alert-danger">
+                <p style="color: aqua;">Quote required</p>
+              </div>
+  
+        </div>
+        <div class="form-group">
+  
+            <label for="details">Author</label><br>
+            <input type="text"  class="form-control"[(ngModel)]="newQuote.details" name="details" #details='ngModel' id="details"required>
+            <div [hidden]="details.valid || details.pristine" class="alert alert-danger">
+                <p style="color: aqua;">Author name required</p>
+            </div>
+            
+        </div>
+        <div class="form-group">
+
+            <label for="complete">Date</label> <br>
+            <input type='date' id="complete" [(ngModel)]="newQuote.completeDate" name="completeDate" #completeDate="ngModel"required>
+            <div [hidden]="completeDate.valid || completeDate.pristine" class="alert alert-danger">
+                <p>Date required</p>
+              </div>
+  
+        </div>
+        <button [disabled]="!quoteForm.valid"type="submit" class="btn btn-success">Add Quote</button>
+        <p class="form-error" *ngIf="!quoteForm.valid" style="color: aqua;">
+            Please fill all the details 
+          </p>
+    </form>
+  </div>
